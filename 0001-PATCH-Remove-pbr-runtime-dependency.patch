@@ -1,0 +1,39 @@
+From 34203a32a6119ffb421dcc614300fb173c1b57a8 Mon Sep 17 00:00:00 2001
+From: Dan Prince <dprince@redhat.com>
+Date: Mon, 29 Sep 2014 09:53:21 -0400
+Subject: [PATCH] [PATCH] Remove pbr runtime dependency
+
+Requires some sed operation on REDHATOSAPPLYCONFIGVERSION and
+REDHATOSAPPLYCONFIGRELEASE to runtime modify the package.
+
+Change-Id: I9722e56b84b341ba7b53cf8a9eafe368699b5cea
+---
+ os_net_config/version.py | 14 ++++++++++++--
+ 1 file changed, 12 insertions(+), 2 deletions(-)
+
+diff --git a/os_net_config/version.py b/os_net_config/version.py
+index 2af627c..3359280 100644
+--- a/os_net_config/version.py
++++ b/os_net_config/version.py
+@@ -14,6 +14,16 @@
+ # License for the specific language governing permissions and limitations
+ # under the License.
+ 
+-import pbr.version
+ 
+-version_info = pbr.version.VersionInfo('os-net-config')
++class VersionInfo(object):
++    release = "REDHATOAPPLCONFIGRELEASE"
++    version = "REDHATOSAPPLYCONFIGVERSION"
++
++    def version_string(self):
++        return self.version
++
++    def release_string(self):
++        return self.release
++
++version_info = VersionInfo()
++version_string = version_info.version_string
+-- 
+1.9.3
+
