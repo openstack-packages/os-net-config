@@ -1,6 +1,6 @@
 Name:			os-net-config
 Version:		XXX
-Release:		1%{?dist}
+Release:		XXX{?dist}
 Summary:		os-net-config
 
 License:		ASL 2.0
