@@ -1,7 +1,7 @@
 Name:			os-net-config
 Version:		XXX
 Release:		1%{?dist}
-Summary:		os-net-config
+Summary:		Host network configuration tool
 
 License:		ASL 2.0
 URL:			http://pypi.python.org/pypi/%{name}
@@ -13,6 +13,8 @@ BuildArch:	noarch
 BuildRequires:	python-setuptools
 BuildRequires:	python2-devel
 BuildRequires:	python-pbr
+BuildRequires:	python-sphinx
+BuildRequires:	python-oslo-sphinx
 
 Requires:	python-setuptools
 Requires:	python-argparse
@@ -22,11 +24,8 @@ Requires:	python-eventlet
 Requires:	python-oslo-config
 Requires:	python-netaddr
 Requires:	python-iso8601
+Requires:	python-six >= 1.5.0
 Requires:	PyYAML
-
-Requires(post):		systemd
-Requires(preun):	systemd
-Requires(postun):	systemd
 
 %description
 Host network configuration tool for OpenStack.
@@ -38,11 +37,14 @@ Host network configuration tool for OpenStack.
 %patch0001 -p1
 
 sed -i '/setuptools_git/d' setup.py
-sed -i s/REDHATOSAPPLYCONFIGVERSION/%{version}/ os_apply_config/version.py
-sed -i s/REDHATOSAPPLYCONFIGRELEASE/%{release}/ os_apply_config/version.py
+sed -i s/REDHATOSNETCONFIGVERSION/%{version}/ os_net_config/version.py
+sed -i s/REDHATOSNETCONFIGRELEASE/%{release}/ os_net_config/version.py
+# make doc build compatible with python-oslo-sphinx RPM
+sed -i 's/oslosphinx/oslo.sphinx/' doc/source/conf.py
 
 %build
 %{__python} setup.py build
+%{__python} setup.py build_sphinx
 
 %install
 %{__python} setup.py install -O1 --skip-build --root %{buildroot}
@@ -50,10 +52,17 @@ sed -i s/REDHATOSAPPLYCONFIGRELEASE/%{release}/ os_apply_config/version.py
 %files
 %doc README.rst
 %doc LICENSE
+%doc doc/build/html
 %{_bindir}/os-net-config
 %{python_sitelib}/os_net_config*
 
 
 %changelog
-* Mon Sep 29 2014 Dan Prince <dprince@redhat.com> - XXX
-- initial package
+* Fri Feb 13 2015 Ben Nemec <bnemec@redhat.com> - 0.1.1-3
+- Fix BuildRequires in the srpm
+
+* Fri Feb 06 2015 Ben Nemec <bnemec@redhat.com> - 0.1.1-2
+- Cleanups from package review
+
+* Mon Dec 22 2014 Ben Nemec <bnemec@redhat.com> - 0.1.1-1
+- Initial Fedora package
