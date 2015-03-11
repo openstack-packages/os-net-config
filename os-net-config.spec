@@ -21,6 +21,7 @@ Requires:	python-argparse
 Requires:	python-anyjson
 Requires:	python-babel
 Requires:	python-eventlet
+Requires:	python-oslo-concurrency
 Requires:	python-oslo-config
 Requires:	python-netaddr
 Requires:	python-iso8601
