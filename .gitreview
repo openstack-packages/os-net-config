@@ -2,4 +2,4 @@
 host=review.gerrithub.io
 port=29418
 project=openstack-packages/os-net-config
-defaultbranch=rpm-master
+defaultbranch=f20-master
