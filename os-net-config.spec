@@ -27,6 +27,7 @@ Requires:	python-oslo-utils
 Requires:	python-netaddr
 Requires:	python-iso8601
 Requires:	python-six >= 1.5.0
+Requires:	initscripts
 Requires:	PyYAML
 
 %description
