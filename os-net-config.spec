@@ -1,6 +1,6 @@
 Name:			os-net-config
 Version:		XXX
-Release:		XXX{?dist}
+Release:		XXX
 Summary:		Host network configuration tool
 
 License:		ASL 2.0
