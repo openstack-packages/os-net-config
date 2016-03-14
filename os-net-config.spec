@@ -59,11 +59,3 @@ sed -i s/REDHATOSNETCONFIGRELEASE/%{release}/ os_net_config/version.py
 
 
 %changelog
-* Fri Feb 13 2015 Ben Nemec <bnemec@redhat.com> - 0.1.1-3
-- Fix BuildRequires in the srpm
-
-* Fri Feb 06 2015 Ben Nemec <bnemec@redhat.com> - 0.1.1-2
-- Cleanups from package review
-
-* Mon Dec 22 2014 Ben Nemec <bnemec@redhat.com> - 0.1.1-1
-- Initial Fedora package
