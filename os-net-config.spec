@@ -1,11 +1,14 @@
+
+%{!?upstream_version: %global upstream_version %{version}%{?milestone}}
+
 Name:			os-net-config
-Version:		XXX
-Release:		XXX
+Version:		0.2.2
+Release:		1%{?dist}
 Summary:		Host network configuration tool
 
 License:		ASL 2.0
 URL:			http://pypi.python.org/pypi/%{name}
-Source0:		http://tarballs.openstack.org/%{name}/%{name}-%{version}.tar.gz
+Source0:		http://tarballs.openstack.org/%{name}/%{name}-%{version}%{?milestone}.tar.gz
 
 Patch0001: 0001-PATCH-Remove-pbr-runtime-dependency.patch
 
@@ -59,3 +62,5 @@ sed -i s/REDHATOSNETCONFIGRELEASE/%{release}/ os_net_config/version.py
 
 
 %changelog
+* Thu Mar 31 2016 RDO <rdo-list@redhat.com> 0.2.2-1
+- RC1 Rebuild for Mitaka RC1 0.2.2
